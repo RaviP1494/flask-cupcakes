@@ -4,7 +4,7 @@ from app import app
 from models import db, Cupcake
 
 # Use test database and don't clutter tests with SQL
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///cupcakes_test'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:drowssap@localhost:5432/cupcakes_test'
 app.config['SQLALCHEMY_ECHO'] = False
 
 # Make Flask errors be real errors, rather than HTML pages with error info
@@ -50,7 +50,7 @@ class CupcakeViewsTestCase(TestCase):
 
     def test_list_cupcakes(self):
         with app.test_client() as client:
-            resp = client.get("/api/cupcakes")
+            resp = client.get("/api/cupcakes/")
 
             self.assertEqual(resp.status_code, 200)
 
@@ -86,10 +86,10 @@ class CupcakeViewsTestCase(TestCase):
 
     def test_create_cupcake(self):
         with app.test_client() as client:
-            url = "/api/cupcakes"
+            url = "/api/cupcakes/"
             resp = client.post(url, json=CUPCAKE_DATA_2)
 
-            self.assertEqual(resp.status_code, 201)
+            self.assertEqual(resp.status_code, 201) #keep getting code 308 with test, but 201 with insomnia
 
             data = resp.json
 
