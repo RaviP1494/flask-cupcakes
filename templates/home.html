@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %} Cupcakes {% endblock %}
+
+{% block body %}
+<h1>Cupcakes</h1>
+    <ul id="cupcake_list" name="cupcake_list">
+        <!-- {% for cake in cupcakes %}
+            <li>{{cake.id}} {{cake.flavor}} {{cake.size}} {{cake.rating}} {{cake.image}}</li>
+        {% endfor %} -->
+    </ul>
+    <h4>Add a cupcake!</h4>
+    <form id="cupcake_add_form" method="POST">
+        <label for="flavor">Flavor: </label><br>
+        <input type="text" id="flavor" name="flavor" required="required"><br>
+        <label for="size">Size: </label><br>
+        <input type="text" id="size" name="size" required="required"><br>
+        <label for="rating">Rating: </label><br>
+        <input type="number" id="rating" name="rating" required="required"><br>
+        <label for="image">Image URL: </label><br>
+        <input type="url" id="image" name="image"><br>
+        <button type="submit">Add</button>
+    </form>
+    <script src="https://unpkg.com/jquery"></script>
+    <script src="https://unpkg.com/axios/dist/axios.js"></script>
+    <script src="/static/app.js"></script>
+{% endblock %}
